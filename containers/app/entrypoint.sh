@@ -13,10 +13,14 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
-if [ -z "$SANDBOX_USER_ID" ]; then
-  echo "SANDBOX_USER_ID is not set"
-  exit 1
-fi
+SANDBOX_USER_ID=501
+
+WORKSPACE_MOUNT_PATH=/Users/emacspy/AIMutilAgentPro/OpenDevin/workspace
+
+#if [ -z "$SANDBOX_USER_ID" ]; then
+#  echo "SANDBOX_USER_ID is not set"
+#  exit 1
+#fi
 
 if [[ "$SANDBOX_USER_ID" -eq 0 ]]; then
   echo "Running OpenDevin as root"
