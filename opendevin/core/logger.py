@@ -55,7 +55,7 @@ class ColoredFormatter(logging.Formatter):
                 return f'{time_str} - {name_str}:{level_str}: {record.filename}:{record.lineno}\n{msg_type_color}\n{msg}'
             return f'{time_str} - {msg_type_color}\n{msg}'
         elif msg_type == 'STEP':
-            msg = '\n\n==============\n' + record.msg + '\n'
+            msg = '\n\n========MSG--steve======\n' + record.msg + '\n'
             return f'{msg}'
         return super().format(record)
 

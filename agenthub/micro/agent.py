@@ -11,6 +11,7 @@ from opendevin.llm.llm import LLM
 from .instructions import instructions
 from .registry import all_microagents
 
+from opendevin.core.logger import opendevin_logger as logger
 
 def parse_response(orig_response: str) -> Action:
     # attempt to load the JSON dict from the response
@@ -64,8 +65,10 @@ class MicroAgent(Agent):
             latest_user_message=state.get_current_user_intent(),
         )
         messages = [{'content': prompt, 'role': 'user'}]
+        logger.info(f'====MSG====={messages}====')
         resp = self.llm.do_completion(messages=messages)
         action_resp = resp['choices'][0]['message']['content']
+        logger.info(f'=====ACT======={action_resp}====')
         state.num_of_chars += len(prompt) + len(action_resp)
         action = parse_response(action_resp)
         return action
